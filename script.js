@@ -9,8 +9,8 @@ function makeBoard(boardSize) {
       newDiv.classList.add('pixel');
       newDiv.style.display = 'inline-flex';
       newDiv.style.flexDirection = 'row';
-      newDiv.style.width = Math.floor(board.offsetWidth / boardSize) + 'px';
-      newDiv.style.height = Math.floor(board.offsetWidth / boardSize) + 'px';
+      newDiv.style.width = board.offsetWidth / boardSize + 'px';
+      newDiv.style.height = board.offsetWidth / boardSize + 'px';
       newDiv.style.backgroundColor = 'black';
       newDiv.onmouseover = () => newDiv.style.backgroundColor = 'grey';
       column.appendChild(newDiv);
@@ -26,8 +26,11 @@ function changeSize() {
     document.querySelector('.container').innerHTML = '';
     makeBoard(newSize)
   }
-
-  console.log(parseInt(textBox.value));
 }
 
+function preChangeSize(e) {
+  if (e.keyCode == 13) changeSize();
+}
+
+document.querySelector('#textSize').addEventListener('keyup', preChangeSize);
 makeBoard(16);
